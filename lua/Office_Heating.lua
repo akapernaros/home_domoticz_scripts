@@ -53,7 +53,7 @@ return {
 	       end
 		end
         
-        if (dzdt.manualOverride and switch2.state == 'On') then
+        if (dzdt.manualOverride and switch2.state == 'On' and switch3.state == 'Off') then
             dzdt.manualOverheat = 0.5
         elseif (dzdt.manualOverride and switch3.state == 'On') then
             dzdt.manualOverheat = 1
@@ -69,7 +69,7 @@ return {
             zone = domoticz.helpers.nightTemperatureSwitchZone(domoticz, zone, 1)
         end
         
-		domoticz.log('ManualOverride ' .. tostring(dzdt.manualOverride))
+		domoticz.log('ManualOverride ' .. tostring(dzdt.manualOverride) .. ' Overheat ' .. dzdt.manualOverheat)
 		domoticz.log('Temperatur Current ' .. tempCur .. 'Temperatur min/max ' .. zone.min .. '/' .. zone.max)
 		
 		local switchTarget = false
@@ -94,5 +94,4 @@ return {
         domoticz.log('Finished - Heizung Q1/Q2 ' .. switch2.state .. '/' .. switch3.state)		
 	end
 }
-
 
